@@ -21,8 +21,7 @@ public class OrderRegistrationTest {
         LiveOrderBoard liveOrderBorard = new LiveOrderBoard();
         Order order1 = new Order();
         liveOrderBorard.register(order1);
-        assertThat(liveOrderBorard.getOrders().entrySet().size(), is(1));
-        assertThat(liveOrderBorard.getOrders().containsValue(order1), is(true));
+        assertThat(liveOrderBorard.getOrders(), is(Arrays.asList(order1)));
     }
 
 
