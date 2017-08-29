@@ -14,7 +14,7 @@ import static org.hamcrest.Matchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 
-public class OrderRegistration {
+public class OrderRegistrationTest {
 
     @Test
     public void it_registers_an_order() {
