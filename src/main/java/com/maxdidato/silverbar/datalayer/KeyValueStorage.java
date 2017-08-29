@@ -1,6 +1,7 @@
 package com.maxdidato.silverbar.datalayer;
 
 import java.util.LinkedHashMap;
+import java.util.UUID;
 
 public class KeyValueStorage {
     //Using a LinkedHashMap to preserve the insertion order
@@ -22,4 +23,7 @@ public class KeyValueStorage {
         return entries;
     }
 
+    public void removeValue(Object id) {
+
+    }
 }

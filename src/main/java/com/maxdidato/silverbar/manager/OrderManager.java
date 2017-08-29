@@ -31,6 +31,7 @@ public class OrderManager {
 
 
     public void removeOrder(UUID id) {
+        keyValueStorage.removeValue(id);
 
     }
 }

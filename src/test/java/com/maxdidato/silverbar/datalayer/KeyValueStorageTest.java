@@ -35,9 +35,18 @@ public class KeyValueStorageTest {
         keyValueStorage.addValue(3, "Object3");
 
         LinkedHashMap allValues = keyValueStorage.getAllValues();
-        assertThat(allValues.values().size(), is(3));
         assertThat(new ArrayList<>(allValues.values()), is(Arrays.asList("Object1", "Object2", "Object3")));
+    }
 
+    @Test
+    public void it_removes_an_entry_given_the_id() {
+        keyValueStorage.addValue(1, "Object1");
+        keyValueStorage.addValue(2, "Object2");
+        keyValueStorage.addValue(3, "Object3");
 
+        keyValueStorage.removeValue(1);
+        LinkedHashMap allValues = keyValueStorage.getAllValues();
+        assertThat(allValues.values().size(), is(3));
+        assertThat(new ArrayList<>(allValues.values()), is(Arrays.asList("Object2", "Object3")));
     }
 }
