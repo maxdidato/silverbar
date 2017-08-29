@@ -24,6 +24,6 @@ public class KeyValueStorage {
     }
 
     public void removeValue(Object id) {
-
+        entries.remove(id);
     }
 }

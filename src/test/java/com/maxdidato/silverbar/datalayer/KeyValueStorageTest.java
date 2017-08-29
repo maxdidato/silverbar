@@ -46,7 +46,6 @@ public class KeyValueStorageTest {
 
         keyValueStorage.removeValue(1);
         LinkedHashMap allValues = keyValueStorage.getAllValues();
-        assertThat(allValues.values().size(), is(3));
         assertThat(new ArrayList<>(allValues.values()), is(Arrays.asList("Object2", "Object3")));
     }
 }
