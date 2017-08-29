@@ -15,7 +15,8 @@ public class Order {
     private UUID id;
     private String userId;
     private double kilos;
-    //Assuming price in sterling so no Currency object is required
+    //Assuming price in sterling so no Currency object is required.
+    //BigDecimal is the proper data structure for currencies, for floating point precision
     private BigDecimal pricePerKilos;
     private OrderType orderType;
 }
