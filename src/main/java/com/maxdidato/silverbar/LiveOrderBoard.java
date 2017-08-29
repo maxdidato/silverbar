@@ -18,7 +18,11 @@ public class LiveOrderBoard {
         orderManager.addOrder(order);
     }
 
-    public List getOrders() {
+    public List<Order> getOrders() {
         return orderManager.getAllOrders();
+    }
+
+    public void delete(UUID id) {
+
     }
 }
