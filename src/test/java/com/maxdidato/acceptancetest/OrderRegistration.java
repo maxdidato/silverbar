@@ -20,11 +20,9 @@ public class OrderRegistration {
     public void it_registers_an_order() {
         LiveOrderBoard liveOrderBorard = new LiveOrderBoard();
         Order order1 = new Order();
-        Order order2 = new Order();
         liveOrderBorard.register(order1);
-        liveOrderBorard.register(order2);
-        assertThat(liveOrderBorard.getOrders(), is((Arrays.asList(order1, order2))));
-
+        assertThat(liveOrderBorard.getOrders().entrySet().size(), is(1));
+        assertThat(liveOrderBorard.getOrders().containsValue(order1), is(true));
     }
 
 
