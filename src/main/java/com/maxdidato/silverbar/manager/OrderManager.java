@@ -17,6 +17,7 @@ public class OrderManager {
 
     public UUID addOrder(Order order) {
         UUID id = UUID.randomUUID();
+        order.setId(id);
         keyValueStorage.addValue(id, order);
         return id;
     }
