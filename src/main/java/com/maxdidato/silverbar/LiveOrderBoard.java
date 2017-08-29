@@ -23,6 +23,6 @@ public class LiveOrderBoard {
     }
 
     public void delete(UUID id) {
-
+        orderManager.removeOrder(id);
     }
 }

@@ -30,4 +30,7 @@ public class OrderManager {
     }
 
 
+    public void removeOrder(UUID id) {
+
+    }
 }

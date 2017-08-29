@@ -44,4 +44,16 @@ public class OrderManagerTest {
         orderManager.addOrder(order3);
         assertThat(orderManager.getAllOrders(),is(Arrays.asList(order1,order2,order3)));
     }
+
+    @Test
+    public void remove_a_given_order(){
+        Order order1 = new Order().withUserId("user1").withKilos(1.2).withPricePerKilos(new BigDecimal(10));
+        Order order2 = new Order().withUserId("user2").withKilos(1.3).withPricePerKilos(new BigDecimal(11));
+        Order order3 = new Order().withUserId("user3").withKilos(1.4).withPricePerKilos(new BigDecimal(12));
+        orderManager.addOrder(order1);
+        orderManager.addOrder(order2);
+        orderManager.addOrder(order3);
+        orderManager.removeOrder(order1.getId());
+        assertThat(orderManager.getAllOrders(),is(Arrays.asList(order2,order3)));
+    }
 }
