@@ -23,7 +23,6 @@ public class OrderRegistrationTest {
     }
     @Test
     public void it_registers_an_order() {
-        LiveOrderBoard liveOrderBorard = new LiveOrderBoard();
         Order order1 = new Order().withUserId("usersId").withKilos(1).withPricePerKilos(new BigDecimal(1));
         liveOrderBorard.register(order1);
         assertThat(liveOrderBorard.getOrders(), is(Arrays.asList(order1)));

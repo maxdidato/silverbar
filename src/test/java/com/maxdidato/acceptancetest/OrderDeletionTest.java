@@ -23,7 +23,7 @@ public class OrderDeletionTest {
 
     @Test
     public void it_removes_a_given_order() {
-        //What is really important here is to test the deletion of a given order
+        //What is important here is to test the deletion of a given order
         //No additional info are added to the orders,as the id will be enough
         liveOrderBorard.register(new Order());
         liveOrderBorard.register(new Order());
