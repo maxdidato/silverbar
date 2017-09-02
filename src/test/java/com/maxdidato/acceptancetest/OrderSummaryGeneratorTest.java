@@ -4,14 +4,17 @@ package com.maxdidato.acceptancetest;
 import com.maxdidato.silverbar.LiveOrderBoard;
 import com.maxdidato.silverbar.OrderSummaryGenerator;
 import com.maxdidato.silverbar.domain.Order;
+import com.maxdidato.silverbar.domain.OrderSummaryRow;
 import org.junit.Test;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import static com.maxdidato.silverbar.domain.OrderType.SELL;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.is;
 
 
@@ -38,8 +41,13 @@ public class OrderSummaryGeneratorTest {
         liveOrderBorard.register(order3);
         liveOrderBorard.register(order4);
         OrderSummaryGenerator orderSummaryGenerator = new OrderSummaryGenerator();
-        List<Order> orderSummary = orderSummaryGenerator.generate();
-        assertThat(orderSummary, is(Arrays.asList(order1)));
+        List<OrderSummaryRow> orderSummary = orderSummaryGenerator.generate();
+        OrderSummaryRow orderSummaryRow1 = new OrderSummaryRow().withKilos(5.5).withPrice(new BigDecimal(306));
+        OrderSummaryRow orderSummaryRow2 = new OrderSummaryRow().withKilos(1.5).withPrice(new BigDecimal(307));
+        OrderSummaryRow orderSummaryRow3 = new OrderSummaryRow().withKilos(1.2).withPrice(new BigDecimal(310));
+        List<OrderSummaryRow> expectedOrderSummary = Arrays.asList(orderSummaryRow1,orderSummaryRow2,orderSummaryRow3);
+        assertThat(orderSummary.size(), is(3));
+        orderSummary.forEach(s -> assertThat(expectedOrderSummary.contains(s),is(true)));
     }
 
 
