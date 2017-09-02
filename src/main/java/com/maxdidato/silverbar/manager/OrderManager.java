@@ -7,7 +7,8 @@ import java.util.List;
 import java.util.UUID;
 
 public class OrderManager {
-
+    //This abstract the data layer. At the moment is implemented by a in memory key value storage.
+    //If in future we want to add a database for the orderManager will be transparent
     OrderDao orderDao;
 
     public OrderManager() {
