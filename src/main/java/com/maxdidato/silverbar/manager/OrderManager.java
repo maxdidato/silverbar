@@ -1,38 +1,33 @@
 package com.maxdidato.silverbar.manager;
 
-import com.maxdidato.silverbar.datalayer.KeyValueStorage;
+import com.maxdidato.silverbar.datalayer.OrderDao;
 import com.maxdidato.silverbar.domain.Order;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 public class OrderManager {
 
-    KeyValueStorage keyValueStorage;
+    OrderDao orderDao;
 
     public OrderManager() {
-        keyValueStorage = new KeyValueStorage();
+        orderDao = new OrderDao();
     }
 
     public UUID addOrder(Order order) {
-        UUID id = UUID.randomUUID();
-        order.setId(id);
-        keyValueStorage.addValue(id, order);
-        return id;
+        return orderDao.addOrder(order);
     }
 
-    public Order getOrder(UUID id){
-        return (Order) keyValueStorage.retrieveValue(id);
+    public Order getOrder(UUID id) {
+        return orderDao.getOrder(id);
     }
 
     public List<Order> getAllOrders() {
-        return new ArrayList<>(keyValueStorage.getAllValues().values());
+        return orderDao.getAllOrders();
     }
 
 
     public void removeOrder(UUID id) {
-        keyValueStorage.removeValue(id);
-
+        orderDao.removeOrder(id);
     }
 }
