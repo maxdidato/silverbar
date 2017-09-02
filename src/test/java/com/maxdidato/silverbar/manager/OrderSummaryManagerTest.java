@@ -34,16 +34,36 @@ public class OrderSummaryManagerTest {
         List<Order> orders = new ArrayList<>();
         orders.add(new Order().withKilos(2)
                 .withPricePerKilos(new BigDecimal(200)).withOrderType(SELL));
-        orders.add(new Order().withKilos(3)
+        orders.add(new Order().withKilos(3).withUserId("user1")
                 .withPricePerKilos(new BigDecimal(200)).withOrderType(SELL));
-        orders.add(new Order().withKilos(2)
+        orders.add(new Order().withKilos(2).withUserId("user2")
                 .withPricePerKilos(new BigDecimal(300)).withOrderType(SELL));
-        orders.add(new Order().withKilos(5)
+        orders.add(new Order().withKilos(5).withUserId("user3")
                 .withPricePerKilos(new BigDecimal(300)).withOrderType(SELL));
 
         List<OrderSummaryRow> orderSummaryRows = new LinkedList<>();
         orderSummaryRows.add(new OrderSummaryRow().withKilos(5).withPrice(new BigDecimal(200)));
         orderSummaryRows.add(new OrderSummaryRow().withKilos(7).withPrice(new BigDecimal(300)));
+        assertThat(orderSummaryManager.generate(orders),is(orderSummaryRows));
+    }
+
+    @Test
+    public void it_shows_sell_orders_orderd_by_price_ascending_order() {
+        List<Order> orders = new ArrayList<>();
+        orders.add(new Order().withKilos(2)
+                .withPricePerKilos(new BigDecimal(200)).withOrderType(SELL));
+        orders.add(new Order().withKilos(3)
+                .withPricePerKilos(new BigDecimal(300)).withOrderType(SELL));
+        orders.add(new Order().withKilos(2)
+                .withPricePerKilos(new BigDecimal(400)).withOrderType(SELL));
+        orders.add(new Order().withKilos(5)
+                .withPricePerKilos(new BigDecimal(500)).withOrderType(SELL));
+
+        List<OrderSummaryRow> orderSummaryRows = new LinkedList<>();
+        orderSummaryRows.add(new OrderSummaryRow().withKilos(2).withPrice(new BigDecimal(200)));
+        orderSummaryRows.add(new OrderSummaryRow().withKilos(3).withPrice(new BigDecimal(300)));
+        orderSummaryRows.add(new OrderSummaryRow().withKilos(2).withPrice(new BigDecimal(400)));
+        orderSummaryRows.add(new OrderSummaryRow().withKilos(5).withPrice(new BigDecimal(500)));
         assertThat(orderSummaryManager.generate(orders),is(orderSummaryRows));
     }
 
