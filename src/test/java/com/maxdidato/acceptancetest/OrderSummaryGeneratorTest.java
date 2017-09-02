@@ -40,8 +40,7 @@ public class OrderSummaryGeneratorTest {
         liveOrderBorard.register(order2);
         liveOrderBorard.register(order3);
         liveOrderBorard.register(order4);
-        OrderSummaryGenerator orderSummaryGenerator = new OrderSummaryGenerator();
-        List<OrderSummaryRow> orderSummary = orderSummaryGenerator.generate();
+        List<OrderSummaryRow> orderSummary = liveOrderBorard.summary();
         OrderSummaryRow orderSummaryRow1 = new OrderSummaryRow().withKilos(5.5).withPrice(new BigDecimal(306));
         OrderSummaryRow orderSummaryRow2 = new OrderSummaryRow().withKilos(1.5).withPrice(new BigDecimal(307));
         OrderSummaryRow orderSummaryRow3 = new OrderSummaryRow().withKilos(1.2).withPrice(new BigDecimal(310));

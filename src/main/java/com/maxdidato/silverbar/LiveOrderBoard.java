@@ -1,6 +1,7 @@
 package com.maxdidato.silverbar;
 import com.maxdidato.silverbar.datalayer.KeyValueStorage;
 import com.maxdidato.silverbar.domain.Order;
+import com.maxdidato.silverbar.domain.OrderSummaryRow;
 import com.maxdidato.silverbar.manager.OrderManager;
 
 import java.util.*;
@@ -24,5 +25,9 @@ public class LiveOrderBoard {
 
     public void delete(UUID id) {
         orderManager.removeOrder(id);
+    }
+
+    public List<OrderSummaryRow> summary() {
+        return null;
     }
 }
