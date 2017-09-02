@@ -5,20 +5,18 @@ import com.maxdidato.silverbar.domain.OrderSummaryRow;
 import com.maxdidato.silverbar.domain.OrderType;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.TreeMap;
+import java.util.*;
 import java.util.stream.Collectors;
 
+import static com.maxdidato.silverbar.domain.OrderType.BUY;
 import static com.maxdidato.silverbar.domain.OrderType.SELL;
 
 public class OrderSummaryManager {
 
-    public List<OrderSummaryRow> generate(List<Order> orders) {
+    public List<OrderSummaryRow> generate(OrderType orderType,List<Order> orders) {
         //using a treemap using the order price as key to apply the natural order
         TreeMap summary = new TreeMap<BigDecimal,OrderSummaryRow>();
-        List<Order> filteredOrders = orders.stream().filter(o -> o.getOrderType().equals(SELL)).collect(Collectors.toList());
+        List<Order> filteredOrders = orders.stream().filter(o -> o.getOrderType().equals(orderType)).collect(Collectors.toList());
         filteredOrders.forEach(o -> {
             OrderSummaryRow orderSummaryRow = new OrderSummaryRow(o.getPricePerKilos(),o.getKilos());
             Object previousValue = summary.put(orderSummaryRow.getPrice(), orderSummaryRow);
@@ -28,8 +26,11 @@ public class OrderSummaryManager {
                 summary.put(orderSummaryRow.getPrice(),orderSummaryRow);
             }
         });
-
-        return new LinkedList<>(summary.values());
+        LinkedList orderList = new LinkedList<>(summary.values());
+        if(orderType.equals(BUY)){
+            Collections.reverse(orderList);
+        }
+            return orderList;
 
     }
 }

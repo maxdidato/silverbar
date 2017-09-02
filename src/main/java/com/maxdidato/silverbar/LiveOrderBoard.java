@@ -2,6 +2,7 @@ package com.maxdidato.silverbar;
 
 import com.maxdidato.silverbar.domain.Order;
 import com.maxdidato.silverbar.domain.OrderSummaryRow;
+import com.maxdidato.silverbar.domain.OrderType;
 import com.maxdidato.silverbar.manager.OrderManager;
 
 import java.util.*;
@@ -29,7 +30,7 @@ public class LiveOrderBoard {
         orderManager.removeOrder(id);
     }
 
-    public List<OrderSummaryRow> summary() {
-        return orderSummaryManager.generate(getOrders());
+    public List<OrderSummaryRow> summary(OrderType orderType) {
+        return orderSummaryManager.generate(orderType,getOrders());
     }
 }
