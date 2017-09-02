@@ -1,5 +1,5 @@
 package com.maxdidato.silverbar;
-import com.maxdidato.silverbar.datalayer.KeyValueStorage;
+
 import com.maxdidato.silverbar.domain.Order;
 import com.maxdidato.silverbar.domain.OrderSummaryRow;
 import com.maxdidato.silverbar.manager.OrderManager;
@@ -7,11 +7,13 @@ import com.maxdidato.silverbar.manager.OrderManager;
 import java.util.*;
 
 public class LiveOrderBoard {
-   OrderManager orderManager;
+    private final OrderSummaryManager orderSummaryManager;
+    private final OrderManager orderManager;
 
     public LiveOrderBoard() {
         // Dependency injection would be much better here. Creating the object in the constructor for simplicity
         orderManager = new OrderManager();
+        orderSummaryManager = new OrderSummaryManager();
     }
 
     public void register(Order order) {
@@ -28,6 +30,6 @@ public class LiveOrderBoard {
     }
 
     public List<OrderSummaryRow> summary() {
-        return null;
+        return orderSummaryManager.generate(getOrders());
     }
 }

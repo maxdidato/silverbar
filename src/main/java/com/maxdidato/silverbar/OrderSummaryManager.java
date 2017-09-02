@@ -5,7 +5,7 @@ import com.maxdidato.silverbar.domain.OrderSummaryRow;
 
 import java.util.List;
 
-public class OrderSummaryGenerator {
+public class OrderSummaryManager {
 
     public List<OrderSummaryRow> generate(List<Order> orders) {
         return null;
