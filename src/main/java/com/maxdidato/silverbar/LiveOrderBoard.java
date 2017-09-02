@@ -2,10 +2,11 @@ package com.maxdidato.silverbar;
 
 import com.maxdidato.silverbar.domain.Order;
 import com.maxdidato.silverbar.domain.OrderSummaryRow;
-import com.maxdidato.silverbar.domain.OrderType;
 import com.maxdidato.silverbar.manager.OrderManager;
+import com.maxdidato.silverbar.manager.OrderSummaryManager;
 
-import java.util.*;
+import java.util.List;
+import java.util.UUID;
 
 import static com.maxdidato.silverbar.domain.OrderType.BUY;
 import static com.maxdidato.silverbar.domain.OrderType.SELL;
@@ -22,7 +23,6 @@ public class LiveOrderBoard {
     }
 
     public void register(Order... order) {
-        //In order to track every single order we use a uuid as id
         stream(order).forEach( o -> orderManager.addOrder(o));
     }
 

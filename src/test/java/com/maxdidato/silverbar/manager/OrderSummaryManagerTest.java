@@ -1,6 +1,5 @@
 package com.maxdidato.silverbar.manager;
 
-import com.maxdidato.silverbar.OrderSummaryManager;
 import com.maxdidato.silverbar.domain.Order;
 import com.maxdidato.silverbar.domain.OrderSummaryRow;
 import org.junit.Before;
