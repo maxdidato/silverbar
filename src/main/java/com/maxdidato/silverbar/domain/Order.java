@@ -21,4 +21,8 @@ public class Order {
     //BigDecimal is the proper data structure for currencies, for floating point precision
     private BigDecimal pricePerKilos;
     private OrderType orderType;
+
+    public String toString(){
+        return String.format("\nUUID:%s USER:%s KG:%s £%s TYPE:%s\n",id,userId,kilos,pricePerKilos,orderType);
+    }
 }

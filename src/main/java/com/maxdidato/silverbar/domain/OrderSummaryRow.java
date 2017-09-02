@@ -19,4 +19,7 @@ public class OrderSummaryRow {
     private BigDecimal price;
     private double kilos;
 
+    public String toString(){
+        return String.format("\n%s kg  £%s\n",kilos,price);
+    }
 }
