@@ -31,13 +31,15 @@ public class OrderSummaryGenerationTest {
                 .withPricePerKilos(new BigDecimal(307)).withOrderType(SELL);
         Order order4 = new Order().withUserId("usersId").withKilos(2.0)
                 .withPricePerKilos(new BigDecimal(306)).withOrderType(SELL);
-        liveOrderBorard.register(order1,order2,order3,order4);
+        Order order5 = new Order().withUserId("usersId").withKilos(2.0)
+                .withPricePerKilos(new BigDecimal(306)).withOrderType(SELL);
+        liveOrderBorard.register(order1,order2,order3,order4,order5);
 
         List<OrderSummaryRow> orderSummary = liveOrderBorard.sellOrdersSummary();
         //We need to preserve the insertion order so a linked list is used
 
         List<OrderSummaryRow> expectedOrderSummary = new LinkedList<>();
-        expectedOrderSummary.add(new OrderSummaryRow().withKilos(5.5).withPrice(new BigDecimal(306)));
+        expectedOrderSummary.add(new OrderSummaryRow().withKilos(7.5).withPrice(new BigDecimal(306)));
         expectedOrderSummary.add(new OrderSummaryRow().withKilos(1.5).withPrice(new BigDecimal(307)));
         expectedOrderSummary.add(new OrderSummaryRow().withKilos(1.2).withPrice(new BigDecimal(310)));
         assertThat(orderSummary, is(expectedOrderSummary));
@@ -55,7 +57,9 @@ public class OrderSummaryGenerationTest {
                 .withPricePerKilos(new BigDecimal(309)).withOrderType(BUY);
         Order order4 = new Order().withUserId("usersId").withKilos(6.0)
                 .withPricePerKilos(new BigDecimal(323)).withOrderType(BUY);
-        liveOrderBorard.register(order1,order2,order3,order4);
+        Order order5 = new Order().withUserId("usersId").withKilos(6.0)
+                .withPricePerKilos(new BigDecimal(309)).withOrderType(BUY);
+        liveOrderBorard.register(order1,order2,order3,order4,order5);
 
         List<OrderSummaryRow> orderSummary = liveOrderBorard.buyOrdersSummary();
         //We need to preserve the insertion order so a linked list is used
@@ -63,7 +67,7 @@ public class OrderSummaryGenerationTest {
         List<OrderSummaryRow> expectedOrderSummary = new LinkedList<>();
         expectedOrderSummary.add(new OrderSummaryRow().withKilos(2.2).withPrice(new BigDecimal(340)));
         expectedOrderSummary.add(new OrderSummaryRow().withKilos(6.0).withPrice(new BigDecimal(323)));
-        expectedOrderSummary.add(new OrderSummaryRow().withKilos(10).withPrice(new BigDecimal(309)));
+        expectedOrderSummary.add(new OrderSummaryRow().withKilos(16).withPrice(new BigDecimal(309)));
         assertThat(orderSummary, is(expectedOrderSummary));
     }
 

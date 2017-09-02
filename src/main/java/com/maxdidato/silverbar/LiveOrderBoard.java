@@ -23,7 +23,7 @@ public class LiveOrderBoard {
     }
 
     public void register(Order... order) {
-        stream(order).forEach( o -> orderManager.addOrder(o));
+        stream(order).forEach(o -> orderManager.addOrder(o));
     }
 
     public List<Order> getOrders() {
@@ -35,9 +35,10 @@ public class LiveOrderBoard {
     }
 
     public List<OrderSummaryRow> buyOrdersSummary() {
-        return orderSummaryManager.generate(BUY,getOrders());
+        return orderSummaryManager.generate(BUY, getOrders());
     }
+
     public List<OrderSummaryRow> sellOrdersSummary() {
-        return orderSummaryManager.generate(SELL,getOrders());
+        return orderSummaryManager.generate(SELL, getOrders());
     }
 }
