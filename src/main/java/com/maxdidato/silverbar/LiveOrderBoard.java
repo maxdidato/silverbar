@@ -7,6 +7,10 @@ import com.maxdidato.silverbar.manager.OrderManager;
 
 import java.util.*;
 
+import static com.maxdidato.silverbar.domain.OrderType.BUY;
+import static com.maxdidato.silverbar.domain.OrderType.SELL;
+import static java.util.Arrays.stream;
+
 public class LiveOrderBoard {
     private final OrderSummaryManager orderSummaryManager;
     private final OrderManager orderManager;
@@ -17,9 +21,9 @@ public class LiveOrderBoard {
         orderSummaryManager = new OrderSummaryManager();
     }
 
-    public void register(Order order) {
+    public void register(Order... order) {
         //In order to track every single order we use a uuid as id
-        orderManager.addOrder(order);
+        stream(order).forEach( o -> orderManager.addOrder(o));
     }
 
     public List<Order> getOrders() {
@@ -30,7 +34,10 @@ public class LiveOrderBoard {
         orderManager.removeOrder(id);
     }
 
-    public List<OrderSummaryRow> summary(OrderType orderType) {
-        return orderSummaryManager.generate(orderType,getOrders());
+    public List<OrderSummaryRow> buyOrdersSummary() {
+        return orderSummaryManager.generate(BUY,getOrders());
+    }
+    public List<OrderSummaryRow> sellOrdersSummary() {
+        return orderSummaryManager.generate(SELL,getOrders());
     }
 }
