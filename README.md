@@ -30,4 +30,4 @@ The last thing to note is that for SELL orders the orders with lowest prices are
 # Build and Execution
 
   - mvn clean package
-  - java -jar <generated-jar> 
+  - java -jar generated-jar 
